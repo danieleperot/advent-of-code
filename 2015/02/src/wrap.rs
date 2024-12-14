@@ -1,3 +1,5 @@
+use crate::shared::extract_sides;
+
 pub fn wrap_boxes(boxes: &str) -> u32 {
     let mut total = 0;
 
@@ -23,15 +25,6 @@ fn wrap_box(l: u32, w: u32, h: u32) -> u32 {
     }
 
     area + smaller_side
-}
-
-fn extract_sides(single_box: &str) -> (u32, u32, u32) {
-    let mut sides = single_box.split("x");
-    let l = sides.next().unwrap_or("0").parse().unwrap_or(0);
-    let w = sides.next().unwrap_or("0").parse().unwrap_or(0);
-    let h = sides.next().unwrap_or("0").parse().unwrap_or(0);
-
-    (l, w, h)
 }
 
 #[test]
