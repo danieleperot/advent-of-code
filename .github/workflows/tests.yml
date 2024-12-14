@@ -3,8 +3,8 @@ run-name: ${{ github.actor }} is running unit tests via GitHub Actions 🚀
 on: [ push ]
 jobs:
   Cargo-Tests:
-    runs-on: rust
+    runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
       - run: current=$PWD; for line in $(find . -name Cargo.toml); do; cd ${line//Cargo.toml/}; cargo test; cd $current ; done
