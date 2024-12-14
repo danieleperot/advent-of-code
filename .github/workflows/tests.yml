@@ -5,6 +5,6 @@ jobs:
   Cargo-Tests:
     runs-on: ubuntu-latest
     steps:
-      - run: curl https://sh.rustup.rs -sSf | sh
+      - run: curl https://sh.rustup.rs -sSf | sh -s -- -y
       - uses: actions/checkout@v4
       - run: current=$PWD; for line in $(find . -name Cargo.toml); do; cd ${line//Cargo.toml/}; cargo test; cd $current ; done
