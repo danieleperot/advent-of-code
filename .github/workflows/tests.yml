@@ -1,0 +1,10 @@
+name: Run tests
+run-name: ${{ github.actor }} is running unit tests via GitHub Actions 🚀
+on: [ push ]
+jobs:
+  Cargo-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl https://sh.rustup.rs -sSf | sh -s -- -y
+      - uses: actions/checkout@v4
+      - run: bash -c 'current=$PWD; for line in $(find . -name Cargo.toml); do cd ${line//Cargo.toml/}; cargo test; cd $current ; done'
