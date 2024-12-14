@@ -1,17 +1,9 @@
 pub fn wrap_boxes(boxes: &str) -> u32 {
-    fn wrap_boxes(boxes: &str) -> u32 {
-        let mut total = 0;
-
-        for single_box in boxes.trim().split("\n") {
-            total += wrap_single_box(single_box);
-        }
-
-        total
-    }
     let mut total = 0;
 
     for single_box in boxes.trim().split("\n") {
-        total += wrap_single_box(single_box);
+        let (l, w, h) = extract_sides(single_box);
+        total += wrap_box(l, w, h);
     }
 
     total
@@ -33,13 +25,13 @@ fn wrap_box(l: u32, w: u32, h: u32) -> u32 {
     area + smaller_side
 }
 
-fn wrap_single_box(single_box: &str) -> u32 {
+fn extract_sides(single_box: &str) -> (u32, u32, u32) {
     let mut sides = single_box.split("x");
     let l = sides.next().unwrap_or("0").parse().unwrap_or(0);
     let w = sides.next().unwrap_or("0").parse().unwrap_or(0);
     let h = sides.next().unwrap_or("0").parse().unwrap_or(0);
 
-    wrap_box(l, w, h)
+    (l, w, h)
 }
 
 #[test]
