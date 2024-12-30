@@ -3,7 +3,7 @@ pub fn distance_from_string(input: &str) -> usize {
     let mut second: Vec<usize> = vec![];
 
     for line in input.lines() {
-        let mut numbers = line.split_once(" ").unwrap_or(("0", "0"));
+        let numbers = line.split_once(" ").unwrap_or(("0", "0"));
         first.push(numbers.0.parse().unwrap_or(0));
         second.push(numbers.1.trim().parse().unwrap_or(0));
     }
