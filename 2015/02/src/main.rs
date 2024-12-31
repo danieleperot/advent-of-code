@@ -1,9 +1,9 @@
 use std::fs;
 use std::io::Error;
 
-mod wrap;
 mod ribbon;
 mod shared;
+mod wrap;
 
 fn main() -> Result<(), Error> {
     let input = fs::read_to_string("input.txt")?;
