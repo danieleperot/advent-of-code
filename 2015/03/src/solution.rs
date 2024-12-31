@@ -8,8 +8,7 @@ pub fn visited_houses(movements: &str, santas: usize) -> HashSet<(i32, i32)> {
     }
     houses.insert((0, 0));
 
-
-    for (index, movement) in movements.chars().into_iter().enumerate() {
+    for (index, movement) in movements.chars().enumerate() {
         match movement {
             '>' => santa_positions[index % santas].0 += 1,
             '<' => santa_positions[index % santas].0 += -1,
@@ -18,7 +17,7 @@ pub fn visited_houses(movements: &str, santas: usize) -> HashSet<(i32, i32)> {
             _ => {}
         }
 
-        houses.insert(santa_positions[index % santas].clone());
+        houses.insert(santa_positions[index % santas]);
     }
 
     houses

@@ -1,11 +1,11 @@
 pub enum StopAt {
     None,
-    Floor(i32)
+    Floor(i32),
 }
 
 pub fn solve(input: &str, stop_at: StopAt) -> i32 {
     let mut accumulator = 0;
-    for (index, character) in input.chars().into_iter().enumerate() {
+    for (index, character) in input.chars().enumerate() {
         match character {
             '(' => accumulator += 1,
             ')' => accumulator -= 1,
@@ -81,6 +81,13 @@ fn verify_examples() {
     ];
 
     for (index, (input, expected)) in assertions.into_iter().enumerate() {
-        assert_eq!(expected, solve(input, StopAt::None), "[#{}] {} should return {}", index, input, expected);
+        assert_eq!(
+            expected,
+            solve(input, StopAt::None),
+            "[#{}] {} should return {}",
+            index,
+            input,
+            expected
+        );
     }
 }
