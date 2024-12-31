@@ -12,15 +12,14 @@ fn similarity(left: Vec<usize>, right: Vec<usize>) -> usize {
 
     for (index, left) in left.iter().enumerate() {
         let right = right
-            .iter()
-            .nth(index)
+            .get(index)
             .expect("Left and right are not the same size.");
 
-        let mut matches_left = map.get(left).unwrap_or(&(0, 0)).clone();
+        let mut matches_left = *map.get(left).unwrap_or(&(0, 0));
         matches_left.0 += 1;
         map.insert(*left, matches_left);
 
-        let mut matches_right = map.get(right).unwrap_or(&(0, 0)).clone();
+        let mut matches_right = *map.get(right).unwrap_or(&(0, 0));
         matches_right.1 += 1;
         map.insert(*right, matches_right);
     }

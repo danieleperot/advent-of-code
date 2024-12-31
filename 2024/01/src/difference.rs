@@ -10,7 +10,7 @@ fn distance(mut first: Vec<usize>, mut second: Vec<usize>) -> usize {
 
     let mut accumulator = 0;
     for (index, first_value) in first.iter().enumerate() {
-        accumulator += first_value.abs_diff(*second.iter().nth(index).unwrap_or(&0));
+        accumulator += first_value.abs_diff(*second.get(index).unwrap_or(&0));
     }
 
     accumulator
